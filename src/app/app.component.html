@@ -1,0 +1,96 @@
+<html>
+
+<nav class="navbar navbar-expand-lg navbar-dark text-uppercase bg-dark ">
+  <a class="navbar-brand" style="align-items:center;color:white;">Covid-19 Daily raports</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item active">
+        <button type="button" class="btn btn-dark" routerLink="">Home <span class="sr-only">(current)</span></button>
+      </li>
+      <li class="nav-item active">
+        <button type="button" class="btn btn-danger" (click)="openModal()">Covid informations</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<body>
+  <div class="content" style="position: relative;text-align: center; margin-top:40px;">
+    <label>Select the country &nbsp;&nbsp;</label>
+    <select class="custom-select" (change)="getCountry($event.target.value)">
+      <option *ngFor="let country of countries" value={{country.Slug}}>
+        {{country.Country}}
+      </option>
+    </select>
+    <br><br>
+    <button class="btn btn-dark" (click)="getCoronaData()">Get Data</button>
+  </div>
+  <table class="table" style="overflow-x:auto;margin-top:40px;">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <th scope="col">Date</th>
+            <tr *ngFor="let a of date">{{a}}<br></tr>
+          </div>
+          <div class="col-sm">
+            <th scope="col">Total Confirmed</th>
+            <tr *ngFor="let b of confirmed">{{b}}<br></tr>
+          </div>
+          <div class="col-sm">
+            <th scope="col">Total Deaths</th>
+            <tr *ngFor="let d of deaths">{{d}}<br></tr>
+          </div>
+        </div>
+      </div>
+  
+  </table>
+
+</body>
+
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"> Health information </h4>
+    <img src="assets/warn.png" style="width:30px; height:30px;">
+      </div>
+      <div class="modal-body">
+        <h6>COVID-19 affects people in different ways. Most infected people will develop a mild to moderate form of the disease and recover without hospitalization.</h6>
+    <h5>The most common symptoms:</h5>
+    <p> fever;<br>
+      cough;<br>
+      fatigue;<br>
+      loss of taste or smell. <br>
+      Uncommon symptoms: <br>
+      sore throat; <br>
+      headaches;<br>
+      headaches and muscle aches; <br>
+      diarrhea; <br>
+      skin irritation or discoloration of the fingers or toes; <br>
+      red or irritated eyes.</p>
+      <h5>In severe cases, symptoms such as:</h5>
+      <p>
+        severe lung infection,<br>
+        sepsis and septic shock - generalized infection and inflammatory response,<br>
+        all of which require specialized care and medical care.<br>
+        The patient's condition can deteriorate rapidly, often in the second week of illness.</p>
+        <h4>Recommendation</h4>
+        <p>Get the Covid-19 Vaccine &nbsp;&nbsp; <img src="assets/covid-vaccine-icon.png" style="width: 40px;height: 40px;"></p>
+        <p>Keep physical distance of at least 1 metre from others, even if they don't appear to be sick. <br>
+          Avoid crowds and close contact. Wear a properly fitted mask when physical distancing is not possible and in poorly ventilated settings.<br>
+           Clean your hands frequently with alcohol-based hand rub or soap and water.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="onCloseHandled()">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal !-->
+
+</html>
